@@ -1,0 +1,17 @@
+.load-more {
+    display: block;
+    margin: 10px auto;
+    border: 2px solid #6c6ed1;
+    border-radius: 7px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.load-more:hover {
+    background-color: #6c6ed1;
+    border: 2px solid inherit;
+}
+
+// .load-more.is-hidden {
+//     display: none;
+// }
