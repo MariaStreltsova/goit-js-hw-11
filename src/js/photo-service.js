@@ -4,7 +4,7 @@ export default class PhotosApiService {
     constructor() {
         this.searchQuery = '';
         this.page = 1;
-         this.totalHits = null;
+        this.totalHits = null;
     }
 
     async fetchPhotos() {
@@ -16,10 +16,9 @@ export default class PhotosApiService {
             throw new Error('error');
         }
         console.log(response);
-         this.page += 1;
+        this.page += 1;
                 const { hits, totalHits } = response.data;
                 return { hits, totalHits };
-     
             }
 
     resetPage() {
@@ -30,14 +29,14 @@ export default class PhotosApiService {
         return this.searchQuery;
     }
     set query(newQuery) {
-         this.searchQuery = newQuery;
+        this.searchQuery = newQuery;
     }
 
-      setTotalHits(hits) {
+    setTotalHits(hits) {
     this.totalHits = hits;
   }
 
-  lastTotalHits() {
+    lastTotalHits() {
     this.totalHits -= 40;
   }
     }

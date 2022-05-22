@@ -1,10 +1,10 @@
- {{#each hits}}
+  {{#each hits}}
 <div class="photo-item">
     
         <a href="{{largeImageURL}}" class="ligtbox-link">
         <img src="{{webformatURL}}" alt="{{tags}}" loading="lazy"/>   
         </a>
- 
+
   <div class="info">
     <p class="info-item">
       <b>Likes {{likes}}</b>
@@ -23,30 +23,3 @@
 </div>
 
   {{/each}}  
-
-
-  {{!-- data-src={{largeImageURL}}  
-{{!-- 
-  {{#each this}}
-  <a href='{{largeImageURL}}' class='photo-link'>
-    <div class='photo-card'>
-      <div class='img-thumb'>
-        <img src='{{webformatURL}}' alt='{{tags}}' loading='lazy' />
-      </div>
-      <div class='info'>
-        <p class='info-item'>
-          <b>Likes: <br />{{likes}}</b>
-        </p>
-        <p class='info-item'>
-          <b>Views: <br />{{views}}</b>
-        </p>
-        <p class='info-item'>
-          <b>Comments: <br />{{comments}}</b>
-        </p>
-        <p class='info-item'>
-          <b>Downloads: <br />{{downloads}}</b>
-        </p>
-      </div>
-    </div>
-  </a>
-{{/each}} --}}

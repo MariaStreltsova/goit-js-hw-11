@@ -1,5 +1,4 @@
 import './sass/main.scss';
-// import axios from "axios";
 import PhotosApiService from './js/photo-service';
 import hitsTpl from './templates/hits.hbs'
 
@@ -29,20 +28,19 @@ async function onSearch(e) {
     e.preventDefault();
     clearHitsGallery();
     
- photosApiService.resetPage();
+    photosApiService.resetPage();
     photosApiService.query = e.currentTarget.elements.searchQuery.value;
     if (photosApiService.query === '') {
         chekInput();
         return;
     }
-  
 
     try {
         const result = await photosApiService.fetchPhotos();
         appendHitsMarkup(result);
-
-
-    photosApiService.setTotalHits(result.totalHits); 
+        
+        scrollTo();
+        photosApiService.setTotalHits(result.totalHits); 
 
         lightbox.refresh();
         
@@ -52,17 +50,18 @@ async function onSearch(e) {
     }
     catch (error) {
     Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.',
+    'Sorry, there are no images matching your search query. Please try again.',
     );
-  }
+    }
 }
 async function onLoadMore() {
-   
     const result = await photosApiService.fetchPhotos();
-     appendHitsMarkup(result);
-     onLastPhotos();
-      photosApiService.lastTotalHits();
-  lightbox.refresh();
+    appendHitsMarkup(result);
+    
+    scrollTo();
+    onLastPhotos();
+    photosApiService.lastTotalHits();
+    lightbox.refresh();
 }
 
 function appendHitsMarkup(markup) {
@@ -80,7 +79,6 @@ function hideShowMoreBtn() {
 }
 
 function chekInput() {
-    
     Notiflix.Notify.failure('Sorry! You have to enter something.Please, try again!') 
     hideShowMoreBtn();
     photosApiService.resetPage(); 
@@ -93,3 +91,15 @@ function onLastPhotos() {
     return;
   }
     }
+
+function scrollTo() {
+    const { height: cardHeight } = document
+    .querySelector(".gallery")
+    .firstElementChild.getBoundingClientRect();
+        window.scrollBy({
+        top: cardHeight * 2,
+        behavior: "smooth",
+});
+}
+
+
